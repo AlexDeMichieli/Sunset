@@ -1,24 +1,31 @@
-name: Share data between jobs
+name: 'Test'
 
-on: [push]
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+  workflow_dispatch:
 
 jobs:
-  test-job:
-    name: Display results
-    runs-on: ubuntu-latest
+  unit:
+    name: 'unit'
+    runs-on: 'ubuntu-latest'
+
     steps:
-     - name: test
-       shell: bash
-       run: |
-        echo "hello"
-      
-     
-#        - name: create-file
-#          shell: bash
-#          run: |
-#             echo "hello there" > greetings.txt
-#        - name: Upload document
-#          uses: actions/upload-artifact@v3
-#          with:
-#           name: greetings
-#           path: greetings.txt
+      - uses: 'actions/checkout@v3'
+
+      - uses: 'actions/setup-node@v2'
+        with:
+          node-version: '16.x'
+
+      - name: 'npm test'
+        run: 'npm run test'
+
+      # example only
+      - name: 'Custom Data'
+        run: |
+          echo "test_coverage=22" > $GITHUB_JOB_OUTPUT
+          echo "binary_size_mb=110" > $GITHUB_JOB_OUTPUT
