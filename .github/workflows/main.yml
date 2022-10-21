@@ -7,12 +7,18 @@ jobs:
     name: Display results
     runs-on: ubuntu-latest
     steps:
-       - name: create-file
-         shell: bash
-         run: |
-            echo "hello there" > greetings.txt
-       - name: Upload document
-         uses: actions/upload-artifact@v3
-         with:
-          name: greetings
-          path: greetings.txt
+     - name: test
+       shell: bash
+       run: |
+        echo "hello"
+      
+     
+#        - name: create-file
+#          shell: bash
+#          run: |
+#             echo "hello there" > greetings.txt
+#        - name: Upload document
+#          uses: actions/upload-artifact@v3
+#          with:
+#           name: greetings
+#           path: greetings.txt
