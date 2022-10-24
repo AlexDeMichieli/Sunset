@@ -75,4 +75,5 @@ jobs:
       uses: github/codeql-action/upload-sarif@v2
       with:
         name: sarif-report-${{ matrix.language }}
-        path: /home/runner/work/**/*.sarif
+        path: /home/runner/work/Sunset/results/*.sarif
+      
