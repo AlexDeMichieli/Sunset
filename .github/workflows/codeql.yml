@@ -74,8 +74,5 @@ jobs:
     - name: Upload SARIF file
       uses: github/codeql-action/upload-sarif@v2
       with:
-        # Path to SARIF file relative to the root of the repository
-        sarif_file: /home/runner/work/Sunset/results/python.sarif
-        # Optional category for the results
-        # Used to differentiate multiple results for one commit
-        category: my-analysis-tool
+        name: sarif-report-${{ matrix.language }}
+        path: /home/runner/work/**/*.sarif
