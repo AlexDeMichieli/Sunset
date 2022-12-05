@@ -7,6 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: foo
-        uses: actions/juice-shop@v1
+        uses: alexdemichieli/juice-shop@v1
         with:
           who-to-greet: 'Mona the Octocat'
