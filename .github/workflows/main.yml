@@ -8,7 +8,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Threadfix connector
-        uses: AlexDeMichieli/insecure-test-app@v6
+        uses: AlexDeMichieli/insecure-test-app@v5
         with: # Set the secret as an input
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TFIX_API_KEY: ${{secrets.TFIX_API_KEY}}
