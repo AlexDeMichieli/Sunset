@@ -8,5 +8,5 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Threadfix connector
-        uses: AlexDeMichieli/insecure-test-app@v2
+        uses: AlexDeMichieli/insecure-test-app@v4
 
