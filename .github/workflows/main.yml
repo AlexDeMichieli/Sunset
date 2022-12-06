@@ -5,9 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-      - uses: actions/checkout@v3
-      - id: foo
-        uses: alexdemichieli/juice-shop@v3
-        with:
-          who-to-greet: 'Mona the Octocat'
- 
+      - name: Threadfix connector
+        uses: AlexDeMichieli/insecure-test-app@v1
+
