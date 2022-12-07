@@ -14,7 +14,6 @@ jobs:
           TFIX_API_KEY: ${{secrets.TFIX_API_KEY}}
           TFIX_INSTANCE_URL: ${{secrets.TFIX_INSTANCE_URL}}
           TFIX_APP_ID: ${{secrets.TFIX_APP_ID}}
-          GITHUB_REPOSITORY: ${{github.repository}}
 
 
 
