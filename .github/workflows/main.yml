@@ -1,19 +1,19 @@
-on: [push]
+# on: [push]
 
-jobs:
-  hello_world_job:
-    runs-on: ubuntu-latest
-    name: A job to say hello
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Threadfix connector
-        uses: AlexDeMichieli/insecure-test-app@master
-        with:
-          env_vars: |
-            env1=value1
-            env2=value2
-            env3=value3
+# jobs:
+#   hello_world_job:
+#     runs-on: ubuntu-latest
+#     name: A job to say hello
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
+#       - name: Threadfix connector
+#         uses: AlexDeMichieli/insecure-test-app@master
+#         with:
+#           env_vars: |
+#             env1=value1
+#             env2=value2
+#             env3=value3
 #         with: # Set the secret as an input
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #           TFIX_API_KEY: ${{secrets.TFIX_API_KEY}}
@@ -21,3 +21,16 @@ jobs:
 #           TFIX_APP_ID: ${{secrets.TFIX_APP_ID}}
 
 
+name: Calling reusable workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  my-job:
+    uses:  AlexDeMichieli/insecure-test-app@master
+    with:
+      env_vars: |
+        env1=value1
+        env2=value2
+        env3=value3
