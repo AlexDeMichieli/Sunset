@@ -1,8 +1,6 @@
 name: "Code Scanning and Threadfix Action "
 
-on:
-  push:
-    branches: [main]
+on: [ push ]
 #   pull_request:
 #     branches: [main]
   #schedule:
