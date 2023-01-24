@@ -45,7 +45,10 @@ jobs:
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
+        with:
+          results_file: results.sarif
+          results_format: sarif
       - name: Download Sarif Report
         uses: actions/download-artifact@v2
         with:
-         name: sarif-report
+         name: results.sarif
