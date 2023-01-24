@@ -45,7 +45,7 @@ jobs:
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
-      - name: Download a single artifact
-        uses: actions/download-artifact@v3
+      - name: Download Sarif Report
+        uses: actions/download-artifact@v2
         with:
-          name: my-artifact
+         name: sarif-report
