@@ -1,53 +1,30 @@
-# This workflow integrates Scan with GitHub's code scanning feature
-# Scan is a free open-source security tool for modern DevOps teams from ShiftLeft
-# Visit https://slscan.io/en/latest/integrations/code-scan for help
-name: SL Scan
+name: CodeQL Analysis
 
-# This section configures the trigger for the workflow. Feel free to customize depending on your convention
-on: push
+on: [push, pull_request]
 
 jobs:
-  Scan-TF:
-    # Scan runs on ubuntu, mac and windows
+  codeql:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v1
-    # Instructions
-    # 1. Setup JDK, Node.js, Python etc depending on your project type
-    # 2. Compile or build the project before invoking scan
-    #    Example: mvn compile, or npm install or pip install goes here
-    # 3. Invoke Scan with the github token. Leave the workspace empty to use relative url
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    - name: Perform Scan
-      uses: ShiftLeftSecurity/scan-action@master
-      env:
-        WORKSPACE: ""
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SCAN_AUTO_BUILD: true
+    - name: Setup CodeQL
+      uses: actions/setup-codeql@v1
       with:
-        output: reports
-        # Scan auto-detects the languages in your project. To override uncomment the below variable and set the type
-        # type: credscan,java
-        # type: python
+        language: ruby
+        # Replace <language> with the language of your project (e.g. "python", "java", "csharp" etc)
 
-    - name: Upload Sarif Report to Workflow
+    - name: Run CodeQL
+      run: codeql database scan --format sarif --output-file analysis.sarif ruby .
+
+    - name: Archive SARIF
+      run: |
+        echo "::set-output name=sarif::$(pwd)/analysis.sarif"
+
+    - name: Upload SARIF
       uses: actions/upload-artifact@v2
       with:
-        name: sarif-report
-        path: ${{ github.workspace }}/**/*.sarif
-        
-    - name: Upload report
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: reports
-    
-  Detect-Errors:
-    runs-on: ubuntu-latest
-    needs:
-      - Scan-TF
-    steps:
-    - name: Download Sarif Report
-      uses: actions/download-artifact@v2
-      with:
-        name: sarif-report
-
+        name: sarif-file
+        path: analysis.sarif
