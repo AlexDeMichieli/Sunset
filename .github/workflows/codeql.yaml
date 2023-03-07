@@ -4,7 +4,7 @@ name: "Code Scanning - Action"
 
 on:
   push
-#commenr
+#comment
 
 jobs:
   CodeQL-Build:
