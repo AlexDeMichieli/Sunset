@@ -1,37 +1,37 @@
-# UPLOADS SARIF!
+UPLOADS SARIF!
 
-# name: "Code Scanning - Action"
+name: "Code Scanning - Action"
 
-# on:
-#   push:
-#     branches: [master]
-
-
-# jobs:
-#   CodeQL-Build:
-#     runs-on: ubuntu-latest
-
-#     permissions:
-#       security-events: write
-#       actions: read
-#       contents: read
-
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v3
-
-#       - name: Initialize CodeQL
-#         uses: github/codeql-action/init@v2
+on:
+  push:
+    branches: [test-branch]
 
 
-#       - name: Autobuild
-#         uses: github/codeql-action/autobuild@v2
+jobs:
+  CodeQL-Build:
+    runs-on: ubuntu-latest
 
-#       - name: Perform CodeQL Analysis
-#         uses: github/codeql-action/analyze@v2
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
 
-#       - name: Upload CodeQL Analysis
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: go.sarif
-#           path: ${{runner.workspace}}/results/*.sarif
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+
+      - name: Upload CodeQL Analysis
+        uses: actions/upload-artifact@v3
+        with:
+          name: go.sarif
+          path: ${{runner.workspace}}/results/*.sarif
