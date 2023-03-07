@@ -3,8 +3,9 @@ UPLOADS SARIF!
 name: "Code Scanning - Action"
 
 on:
-  push
-#comment
+  push:
+    branches: [test-branch]
+
 
 jobs:
   CodeQL-Build:
