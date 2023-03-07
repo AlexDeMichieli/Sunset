@@ -3,8 +3,7 @@ UPLOADS SARIF!
 name: "Code Scanning - Action"
 
 on:
-  push:
-    branches: [test-branch]
+  push
 
 
 jobs:
